@@ -1,24 +1,44 @@
 # Blog2Social API PHP SDK
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-8.1%2B-blue.svg)](https://www.php.net/)
+[![Composer](https://img.shields.io/badge/Composer-ready-orange.svg)](https://getcomposer.org/)
+
 Official PHP SDK for the Blog2Social API v1.0.
 
-The SDK provides an object-oriented interface for authentication, social account management, publishing workflows, video uploads, insights, and application management.
+The SDK provides a modern, object-oriented interface for:
+
+- Authentication
+- Social account management
+- Content publishing
+- Image and video publishing
+- Application management
+
+Designed for modern PHP applications and distributed via Composer.
+
+---
+
+## Features
+
+- Authenticate Blog2Social API users
+- Connect and manage social media accounts
+- Publish link, image, and video posts
+- Manage applications and API integrations
+- PSR-4 compliant
+- Composer-ready installation
+- PHP 8.1+ support
+
+---
 
 ## Installation
 
-Install the SDK with Composer:
+Install the SDK via Composer:
 
 ```bash
 composer require adenion/blog2social-api-php-sdk
 ```
 
-## Repository
-
-GitHub repository:
-
-```text
-https://github.com/adenion/blog2social-api-php-sdk
-```
+---
 
 ## Requirements
 
@@ -26,6 +46,8 @@ https://github.com/adenion/blog2social-api-php-sdk
 - Composer
 - PHP cURL extension
 - PHP JSON extension
+
+---
 
 ## Namespace
 
@@ -35,7 +57,19 @@ Adenion\Blog2Social\Sdk\
 
 The Composer PSR-4 configuration maps this namespace to `src/`.
 
-## Basic Usage
+---
+
+## Repository
+
+GitHub repository:
+
+```text
+https://github.com/adenion/blog2social-api-php-sdk
+```
+
+---
+
+## Quick Start
 
 ```php
 <?php
@@ -53,9 +87,13 @@ $client = new Blog2SocialClient(
 );
 ```
 
-## Authenticate a User
+---
+
+## Authentication
 
 Most API requests require both a `service_token` and an `access_token`.
+
+Authenticate the user:
 
 ```php
 $auth_response = $client
@@ -65,7 +103,7 @@ $auth_response = $client
 $access_token = $auth_response['access_token'];
 ```
 
-Store the returned `access_token` securely and use it for future requests:
+Store the returned access token securely and use it for future requests:
 
 ```php
 $client = new Blog2SocialClient(
@@ -74,7 +112,11 @@ $client = new Blog2SocialClient(
 );
 ```
 
+---
+
 ## List Available Networks
+
+Retrieve all supported social networks:
 
 ```php
 $networks = $client
@@ -84,9 +126,11 @@ $networks = $client
 print_r($networks);
 ```
 
+---
+
 ## Connect a Social Media Account
 
-Create an authorization link for a social media account.
+Generate an authorization URL to connect a social media account.
 
 Example: Connect a Facebook Page.
 
@@ -108,13 +152,15 @@ header(
 exit;
 ```
 
-Network type values:
+### Network Type Values
 
 ```text
 0 = Profile
 1 = Page
 2 = Group
 ```
+
+---
 
 ## List Connected Accounts
 
@@ -127,6 +173,8 @@ print_r($connections);
 ```
 
 The returned `client_user_network_id` is required for publishing posts.
+
+---
 
 ## Publish a Link Post
 
@@ -151,13 +199,15 @@ $response = $client
 print_r($response);
 ```
 
-Post format values:
+### Post Format Values
 
 ```text
 0 = Link
 1 = Image
 2 = Video
 ```
+
+---
 
 ## Publish an Image Post
 
@@ -183,6 +233,8 @@ $response = $client
     );
 ```
 
+---
+
 ## Publish a Video Post
 
 ```php
@@ -207,12 +259,17 @@ $response = $client
     );
 ```
 
+---
+
 ## Error Handling
 
-The Blog2Social API returns one result object per publication target. Always evaluate every response item individually.
+The Blog2Social API returns one result object per publication target.
+
+Always evaluate every response item individually.
 
 ```php
 foreach ($response as $result) {
+
     if ((int) $result['error'] === 0) {
         echo 'Published successfully.';
         continue;
@@ -222,10 +279,11 @@ foreach ($response as $result) {
 }
 ```
 
-Example exception handling:
+### Exception Handling
 
 ```php
 try {
+
     $response = $client
         ->share()
         ->createPost(
@@ -234,14 +292,16 @@ try {
         );
 
     print_r($response);
+
 } catch (Throwable $exception) {
+
     echo '<pre>';
     print_r($exception);
     echo '</pre>';
 }
 ```
 
-Common API error codes:
+### Common API Error Codes
 
 ```text
 TOKEN
@@ -252,6 +312,8 @@ LIMIT
 RATE_LIMIT
 NO_DATA
 ```
+
+---
 
 ## Available Services
 
@@ -272,6 +334,8 @@ $client->app();
 $client->userApps();
 ```
 
+---
+
 ## Development
 
 Install development dependencies:
@@ -288,6 +352,46 @@ composer test
 
 `phpunit/phpunit` is only required for development and automated tests. It is listed under `require-dev` and is not installed for production consumers when Composer is run with `--no-dev`.
 
+---
+
+## Contributing
+
+Contributions are welcome.
+
+If you would like to contribute:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a pull request
+
+For larger changes, please open an issue first to discuss the proposed implementation.
+
+---
+
+## Security
+
+If you discover a security vulnerability, please report it privately and do not create a public GitHub issue.
+
+Please contact:
+
+```text
+customer-service@blog2social.com
+```
+
+---
+
+## Support
+
+For support, bug reports, and feature requests:
+
+- GitHub Issues
+- Blog2Social Support Team
+
+---
+
 ## License
 
 This SDK is released under the MIT License.
+
+See the [LICENSE](LICENSE) file for details.
