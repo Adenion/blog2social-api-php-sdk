@@ -13,10 +13,12 @@ $client = new Blog2SocialClient(
     'USER_ACCESS_TOKEN'
 );
 
+
+$client_user_network_id = (int) 'YOUR_CLIENT_USER_NETWORK_ID';
 $request = new InsightRequest(
     1,
     NetworkType::PROFILE,
-    3241,
+    $client_user_network_id,
     123456789
 );
 

@@ -13,6 +13,7 @@ class EndpointRequestTest extends TestCase
 {
     private RecordingHttpClient $http_client;
     private Blog2SocialClient $client;
+    private int $client_user_network_id = 0;
 
     protected function setUp(): void
     {
@@ -43,10 +44,10 @@ class EndpointRequestTest extends TestCase
 
     public function testPostRemoveUsesDocumentedBody(): void
     {
-        $this->client->share()->removePost(3241, 9876);
+        $this->client->share()->removePost($this->client_user_network_id, 9876);
 
         $this->assertSame('/network/post/remove', $this->http_client->last_endpoint);
-        $this->assertSame(3241, $this->http_client->last_payload['client_user_network_id']);
+        $this->assertSame($this->client_user_network_id, $this->http_client->last_payload['client_user_network_id']);
         $this->assertSame(9876, $this->http_client->last_payload['b2s_posts'][0]['post_id']);
     }
 
@@ -56,7 +57,7 @@ class EndpointRequestTest extends TestCase
             [
                 'network_id' => 1,
                 'network_type' => 0,
-                'client_user_network_id' => 3241,
+                'client_user_network_id' => $this->client_user_network_id,
                 'extern_post_id' => 123456,
             ],
         ];

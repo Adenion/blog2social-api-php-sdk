@@ -11,8 +11,9 @@ $client = new Blog2SocialClient(
     'USER_ACCESS_TOKEN'
 );
 
+$client_user_network_id = (int) 'YOUR_CLIENT_USER_NETWORK_ID';
 $response = $client->share()->removePost(
-    3241,
+    $client_user_network_id,
     9876
 );
 

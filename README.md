@@ -179,7 +179,7 @@ The returned `client_user_network_id` is required for publishing posts.
 ## Publish a Link Post
 
 ```php
-$client_user_network_id = 3241;
+$client_user_network_id = (int) 'YOUR_CLIENT_USER_NETWORK_ID';
 
 $response = $client
     ->share()
