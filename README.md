@@ -35,7 +35,7 @@ Designed for modern PHP applications and distributed via Composer.
 Install the SDK via Composer:
 
 ```bash
-composer require adenion/blog2social-api-php-sdk
+composer require adenion/blog2social-api-php-sdk:dev-main
 ```
 
 ---
