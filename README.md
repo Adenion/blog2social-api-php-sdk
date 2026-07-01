@@ -406,7 +406,7 @@ $client->userApps();
 
 Complete API documentation is available at:
 
-https://de.blog2social.com/social-media-api/
+[https://en.blog2social.com/social-media-api/](https://en.blog2social.com/social-media-api/)
 
 The documentation includes:
 
@@ -496,7 +496,7 @@ The SDK simplifies implementation, while the Blog2Social API documentation provi
 
 API Documentation:
 
-https://de.blog2social.com/social-media-api/
+[https://en.blog2social.com/social-media-api/](https://en.blog2social.com/social-media-api/)
 
 ---
 
