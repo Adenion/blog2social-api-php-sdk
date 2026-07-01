@@ -1,10 +1,8 @@
-# Blog2Social API PHP SDK
+# PHP SDK for Social Media API Integration (Blog2Social API v1.0)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-blue.svg)](https://www.php.net/)
 [![Composer](https://img.shields.io/badge/Composer-ready-orange.svg)](https://getcomposer.org/)
-
-## PHP SDK for Social Media API Integration (Blog2Social API v1.0)
 
 Build social media publishing directly into your PHP applications using one unified Social Media API.
 
