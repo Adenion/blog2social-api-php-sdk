@@ -4,29 +4,97 @@
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-blue.svg)](https://www.php.net/)
 [![Composer](https://img.shields.io/badge/Composer-ready-orange.svg)](https://getcomposer.org/)
 
-Official PHP SDK for the Blog2Social API v1.0.
+## PHP SDK for Social Media API Integration (Blog2Social API v1.0)
 
-The SDK provides a modern, object-oriented interface for:
+Build social media publishing directly into your PHP applications using one unified Social Media API.
 
-- Authentication
-- Social account management
-- Content publishing
-- Image and video publishing
-- Application management
+Instead of integrating and maintaining multiple platform-specific APIs, the Blog2Social PHP SDK provides one consistent interface to authenticate users, connect social media accounts, and publish content across multiple social networks.
 
-Designed for modern PHP applications and distributed via Composer.
+Designed for SaaS platforms, CMS solutions, AI applications, marketing tools, enterprise software and custom business applications.
+
+### Why use the SDK?
+
+* Authenticate users securely
+* Connect social media accounts via OAuth
+* Publish text, links, images and videos
+* Support multiple social media platforms through one API
+* Composer-ready
+* PSR-4 compliant
+* PHP 8.1+
+
+---
+
+## Architecture
+
+```text
+┌──────────────────────────────┐
+│      Your PHP Application    │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│     Blog2Social PHP SDK      │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│       Blog2Social API        │
+└──────────────┬───────────────┘
+               │
+   ┌───────────┼───────────┐
+   ▼           ▼           ▼
+ Facebook   LinkedIn   Instagram
+      ▼           ▼           ▼
+   Threads   Pinterest   TikTok
+
+... additional supported networks ...
+```
 
 ---
 
 ## Features
 
-- Authenticate Blog2Social API users
-- Connect and manage social media accounts
-- Publish link, image, and video posts
-- Manage applications and API integrations
-- PSR-4 compliant
-- Composer-ready installation
-- PHP 8.1+ support
+* Authenticate Blog2Social API users
+* Connect and manage social media accounts
+* Publish link, image, and video posts
+* Manage applications and API integrations
+* PSR-4 compliant
+* Composer-ready installation
+* PHP 8.1+ support
+
+---
+
+## Typical Use Cases
+
+The SDK is designed for PHP applications that need to create, schedule, or publish social media content without maintaining separate integrations for every platform.
+
+### SaaS platforms
+
+Add social media publishing to your product so users can share updates, reports, listings, achievements, or announcements directly from your application.
+
+### Content Management Systems
+
+Turn articles, pages, product updates, or editorial content into social media posts and publish them to connected social accounts.
+
+### AI-powered applications
+
+Generate captions, campaign messages, summaries, or content variations with AI and publish approved content through one API workflow.
+
+### Marketing automation platforms
+
+Trigger social media publishing from campaigns, workflows, CRM events, ecommerce actions, or scheduled content plans.
+
+### Agency tools
+
+Manage multiple clients, brands, connected accounts, and publishing targets from one application layer.
+
+### Enterprise software
+
+Distribute company news, product updates, employer branding content, or internal announcements to approved social media channels.
+
+### Internal communication systems
+
+Allow teams to share selected updates, events, milestones, or knowledge base content across company-managed social accounts.
 
 ---
 
@@ -42,10 +110,10 @@ composer require adenion/blog2social-api-php-sdk:dev-main
 
 ## Requirements
 
-- PHP 8.1 or higher
-- Composer
-- PHP cURL extension
-- PHP JSON extension
+* PHP 8.1 or higher
+* Composer
+* PHP cURL extension
+* PHP JSON extension
 
 ---
 
@@ -336,6 +404,104 @@ $client->userApps();
 
 ---
 
+## Documentation
+
+Complete API documentation is available at:
+
+https://de.blog2social.com/social-media-api/
+
+The documentation includes:
+
+* Authentication
+* OAuth
+* Account Management
+* Publishing
+* Media Uploads
+* Insights
+* Error Codes
+* API Reference
+
+---
+
+## Frequently Asked Questions
+
+### Why should I use a unified Social Media API instead of integrating individual platform APIs?
+
+Building your own integration means maintaining separate APIs, OAuth flows, publishing endpoints, media formats, and API updates for every supported social media platform.
+
+The Blog2Social API provides one unified interface for authentication, account management, and content publishing. Instead of implementing multiple platform-specific integrations, your application communicates with a single API while the Blog2Social platform handles network-specific differences in the background.
+
+This reduces development effort, simplifies maintenance, and allows your application to support multiple social media platforms through one consistent implementation.
+
+### Is there a PHP SDK for publishing to multiple social media platforms?
+
+Yes.
+
+The Blog2Social PHP SDK is an open-source client library that wraps the Blog2Social API in an object-oriented interface.
+
+Instead of manually creating HTTP requests, handling authentication, and processing responses for every endpoint, developers can work with reusable PHP service classes that simplify authentication, account management, content publishing, media uploads, and application management.
+
+The SDK is Composer-ready, PSR-4 compliant, supports PHP 8.1+, and is designed for production applications.
+
+### How does user authentication work?
+
+Authentication consists of two steps.
+
+First, your application authenticates itself using its `service_token`. This identifies your application to the Blog2Social API.
+
+Second, the SDK authenticates the user and returns an `access_token`, which is used for all subsequent API requests.
+
+When a user connects a social media account, the Blog2Social API manages the OAuth authorization process. After successful authorization, the connected account receives a unique `client_user_network_id`, which is required when publishing content.
+
+### Can users connect multiple social media accounts?
+
+Yes.
+
+Each authenticated user can connect multiple accounts across all supported social media platforms.
+
+After authorization, the SDK retrieves all connected accounts together with their corresponding `client_user_network_id`. Your application can then select the appropriate publishing target for every request.
+
+This makes the SDK suitable for applications that manage multiple brands, customers, workspaces, or publishing destinations.
+
+### What types of content can I publish?
+
+The SDK provides one consistent publishing interface for different content types.
+
+Depending on the capabilities of the connected social network, applications can publish:
+
+* Link posts
+* Text posts
+* Image posts
+* Video posts
+
+The Blog2Social API validates requests and automatically handles platform-specific publishing requirements while your application uses one consistent publishing workflow.
+
+### How should my application handle publishing errors?
+
+A successful HTTP response does not necessarily mean that every publication succeeded.
+
+Publishing requests may contain multiple target accounts, and each target returns its own publishing result. Applications should therefore always evaluate the individual response objects instead of relying solely on the HTTP status code.
+
+The SDK includes examples for response evaluation and exception handling, allowing applications to detect authentication issues, permission errors, validation failures, or platform-specific publishing errors.
+
+### What's the difference between the PHP SDK and the Blog2Social API?
+
+The Blog2Social API is the underlying REST interface that provides authentication, account management, publishing, media handling, analytics, and other services.
+
+The PHP SDK is a lightweight client library built on top of the API. It wraps REST endpoints in reusable PHP classes, reducing boilerplate code and simplifying integration into PHP applications.
+
+Applications written in PHP will typically use the SDK, while applications written in other programming languages can integrate directly with the REST API.
+
+### Where can I find the complete API documentation?
+
+The SDK simplifies implementation, while the Blog2Social API documentation provides the complete technical reference for all available endpoints, request parameters, authentication methods, response formats, supported services, and API error codes.
+
+API Documentation:
+
+https://de.blog2social.com/social-media-api/
+
+---
+
 ## Development
 
 Install development dependencies:
@@ -385,8 +551,8 @@ customer-service@blog2social.com
 
 For support, bug reports, and feature requests:
 
-- GitHub Issues
-- Blog2Social Support Team
+* GitHub Issues
+* Blog2Social Support Team
 
 ---
 
@@ -394,4 +560,4 @@ For support, bug reports, and feature requests:
 
 This SDK is released under the MIT License.
 
-See the [LICENSE](LICENSE) file for details.
+See the LICENSE file for details.
