@@ -162,7 +162,9 @@ class HttpClient
 
     private function buildUrl(string $endpoint, array $query_params = []): string
     {
-        $url = $this->config->getBaseUrl() . '/' . ltrim($endpoint, '/');
+        $url = preg_match('#^https?://#i', $endpoint) === 1
+            ? $endpoint
+            : $this->config->getBaseUrl() . '/' . ltrim($endpoint, '/');
 
         if ($query_params !== []) {
             $url .= '?' . http_build_query(

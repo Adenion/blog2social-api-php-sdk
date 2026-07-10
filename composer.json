@@ -12,6 +12,7 @@
   ],
   "homepage": "https://www.blog2social.com/",
   "support": {
+    "issues": "https://github.com/adenion/blog2social-api-php-sdk/issues",
     "source": "https://github.com/adenion/blog2social-api-php-sdk"
   },
   "require": {
@@ -33,8 +34,13 @@
     "phpunit/phpunit": "^10.0 || ^11.0"
   },
   "scripts": {
-    "test": "phpunit"
+    "test": "phpunit",
+    "lint": "find src examples tests -name '*.php' -print0 | xargs -0 -n1 php -l"
   },
   "minimum-stability": "stable",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "repository": {
+    "type": "vcs",
+    "url": "https://github.com/adenion/blog2social-api-php-sdk.git"
+  }
 }

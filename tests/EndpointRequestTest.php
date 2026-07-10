@@ -13,7 +13,7 @@ class EndpointRequestTest extends TestCase
 {
     private RecordingHttpClient $http_client;
     private Blog2SocialClient $client;
-    private int $client_user_network_id = 0;
+    private int $client_user_network_id = 123456;
 
     protected function setUp(): void
     {
@@ -74,8 +74,43 @@ class EndpointRequestTest extends TestCase
     {
         $this->client->videoStatus()->check('video_token');
 
-        $this->assertSame('/video/check', $this->http_client->last_endpoint);
-        $this->assertSame(['video_token' => 'video_token'], $this->http_client->last_query_params);
+        $this->assertSame('https://api-upload.blog2social.com/api/rest/v1.0/video/check', $this->http_client->last_endpoint);
+        $this->assertSame(['video_token' => 'video_token'], $this->http_client->last_payload);
+        $this->assertSame([], $this->http_client->last_query_params);
+    }
+
+
+    public function testNetworkPropertiesUsesAccessToken(): void
+    {
+        $this->client->network()->listProperties();
+
+        $this->assertSame('/network/properties', $this->http_client->last_endpoint);
+        $this->assertSame('service_token', $this->http_client->last_payload['service_token']);
+        $this->assertSame('access_token', $this->http_client->last_payload['access_token']);
+    }
+
+    public function testListUsersUsesOnlyServiceToken(): void
+    {
+        $this->client->user()->listUsers();
+
+        $this->assertSame('/user/list', $this->http_client->last_endpoint);
+        $this->assertSame('service_token', $this->http_client->last_payload['service_token']);
+        $this->assertArrayNotHasKey('access_token', $this->http_client->last_payload);
+    }
+
+    public function testVideoCreateUsesB2sPostsBody(): void
+    {
+        $posts = [[
+            'client_user_network_id' => $this->client_user_network_id,
+            'title' => 'Video',
+            'message' => 'Video test',
+            'postFormat' => 2,
+        ]];
+
+        $this->client->video()->createVideoPost($this->client_user_network_id, $posts);
+
+        $this->assertSame('/network/post/create/', $this->http_client->last_endpoint);
+        $this->assertSame($posts, $this->http_client->last_payload['b2s_posts']);
     }
 
     public function testUserAppAddUsesQueryParameters(): void

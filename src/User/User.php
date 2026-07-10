@@ -16,6 +16,11 @@ class User
         $this->client = $client;
     }
 
+    public function listUsers(): array
+    {
+        return $this->client->requestBody('/user/list', [], false);
+    }
+
     public function listUserAuthentications(): array
     {
         return $this->client->requestQuery('/user/auth/list');

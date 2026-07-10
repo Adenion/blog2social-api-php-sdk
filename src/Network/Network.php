@@ -20,6 +20,11 @@ class Network
         return $this->client->requestBody('/network/list');
     }
 
+    public function listProperties(): array
+    {
+        return $this->client->requestBody('/network/properties');
+    }
+
     public function addNetwork(
         int $network_id,
         int $network_type_id,
