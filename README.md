@@ -1,4 +1,7 @@
 # Blog2Social API PHP SDK
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-8.1%2B-blue.svg)](https://www.php.net/)
+[![Composer](https://img.shields.io/badge/Composer-ready-orange.svg)](https://getcomposer.org/)
 
 Official PHP SDK for the Blog2Social API v1.0.
 
@@ -18,6 +21,32 @@ composer require adenion/blog2social-api-php-sdk
 - PHP JSON extension
 - A Blog2Social `service_token`
 - An `access_token` for user-specific endpoints
+
+## Architecture
+
+```text
+┌──────────────────────────────┐
+│      Your PHP Application    │
+└──────────────┬───────────────┘
+              │
+              ▼
+┌──────────────────────────────┐
+│     Blog2Social PHP SDK      │
+└──────────────┬───────────────┘
+              │
+              ▼
+┌──────────────────────────────┐
+│       Blog2Social API        │
+└──────────────┬───────────────┘
+              │
+  ┌───────────┼───────────┐
+  ▼           ▼           ▼
+Facebook   LinkedIn   Instagram
+     ▼           ▼           ▼
+  Threads   Pinterest   TikTok
+
+... additional supported networks ...
+```
 
 ## Initialization
 
@@ -122,7 +151,7 @@ The returned `client_user_network_id` identifies the publishing destination.
 ## Publish a Link Post
 
 ```php
-$client_user_network_id = 123456;
+$client_user_network_id = XXX;
 
 $response = $client
     ->share()
