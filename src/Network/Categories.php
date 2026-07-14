@@ -17,7 +17,7 @@ class Categories extends Network
             );
         }
 
-        return $this->client->requestQuery('/network/categories', [
+        return $this->client->requestBody('/network/categories', [
             'client_user_network_id' => $client_user_network_id,
         ]);
     }

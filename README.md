@@ -5,7 +5,7 @@
 
 Official PHP SDK for the Blog2Social API v1.0.
 
-The SDK provides an object-oriented interface for authentication, network connections, publishing, insights, user apps, and video uploads.
+The SDK provides an object-oriented interface for authentication, network connections, publishing, user apps, and video uploads.
 
 ## Installation
 

@@ -26,7 +26,7 @@ class EndpointRequestTest extends TestCase
         );
     }
 
-    public function testNetworkAddUsesQueryParameters(): void
+    public function testNetworkAddUsesJsonBody(): void
     {
         $this->client->connection()->addNetwork(
             1,
@@ -36,10 +36,10 @@ class EndpointRequestTest extends TestCase
         );
 
         $this->assertSame('/network/add', $this->http_client->last_endpoint);
-        $this->assertSame([], $this->http_client->last_payload);
-        $this->assertSame('service_token', $this->http_client->last_query_params['service_token']);
-        $this->assertSame('access_token', $this->http_client->last_query_params['access_token']);
-        $this->assertSame(99, $this->http_client->last_query_params['service_conditions_id']);
+        $this->assertSame('service_token', $this->http_client->last_payload['service_token']);
+        $this->assertSame('access_token', $this->http_client->last_payload['access_token']);
+        $this->assertSame(99, $this->http_client->last_payload['service_conditions_id']);
+        $this->assertSame([], $this->http_client->last_query_params);
     }
 
     public function testPostRemoveUsesDocumentedBody(): void
@@ -51,24 +51,6 @@ class EndpointRequestTest extends TestCase
         $this->assertSame(9876, $this->http_client->last_payload['b2s_posts'][0]['post_id']);
     }
 
-    public function testInsightsUsesQueryAuthenticationAndBodyArray(): void
-    {
-        $request = [
-            [
-                'network_id' => 1,
-                'network_type' => 0,
-                'client_user_network_id' => $this->client_user_network_id,
-                'extern_post_id' => 123456,
-            ],
-        ];
-
-        $this->client->insights()->total($request);
-
-        $this->assertSame('/network/post/insights/total', $this->http_client->last_endpoint);
-        $this->assertSame($request, $this->http_client->last_payload);
-        $this->assertSame('service_token', $this->http_client->last_query_params['service_token']);
-        $this->assertSame('access_token', $this->http_client->last_query_params['access_token']);
-    }
 
     public function testVideoCheckDoesNotInjectApiTokens(): void
     {
@@ -113,7 +95,7 @@ class EndpointRequestTest extends TestCase
         $this->assertSame($posts, $this->http_client->last_payload['b2s_posts']);
     }
 
-    public function testUserAppAddUsesQueryParameters(): void
+    public function testUserAppAddUsesJsonBody(): void
     {
         $this->client->userApps()->addApp(
             1,
@@ -123,7 +105,9 @@ class EndpointRequestTest extends TestCase
         );
 
         $this->assertSame('/app/add', $this->http_client->last_endpoint);
-        $this->assertSame('My App', $this->http_client->last_query_params['app_name']);
-        $this->assertSame([], $this->http_client->last_payload);
+        $this->assertSame('My App', $this->http_client->last_payload['app_name']);
+        $this->assertSame('service_token', $this->http_client->last_payload['service_token']);
+        $this->assertSame('access_token', $this->http_client->last_payload['access_token']);
+        $this->assertSame([], $this->http_client->last_query_params);
     }
 }

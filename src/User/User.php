@@ -23,7 +23,7 @@ class User
 
     public function listUserAuthentications(): array
     {
-        return $this->client->requestQuery('/user/auth/list');
+        return $this->client->requestBody('/user/auth/list');
     }
 
     public function listAuth(): array
@@ -40,7 +40,7 @@ class User
             );
         }
 
-        return $this->client->requestQuery('/user/auth/delete', [
+        return $this->client->requestBody('/user/auth/delete', [
             'client_user_network_id' => $client_user_network_id,
         ]);
     }

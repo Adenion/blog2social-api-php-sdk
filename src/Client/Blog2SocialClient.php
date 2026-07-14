@@ -10,11 +10,9 @@ use Adenion\Blog2Social\Sdk\Config\Config;
 use Adenion\Blog2Social\Sdk\Exception\AuthenticationException;
 use Adenion\Blog2Social\Sdk\Exception\ValidationException;
 use Adenion\Blog2Social\Sdk\Http\HttpClient;
-use Adenion\Blog2Social\Sdk\Insights\Insights;
 use Adenion\Blog2Social\Sdk\Network\Categories;
 use Adenion\Blog2Social\Sdk\Network\Connection;
 use Adenion\Blog2Social\Sdk\Network\Network;
-use Adenion\Blog2Social\Sdk\Post\Insights as PostInsights;
 use Adenion\Blog2Social\Sdk\Post\Post;
 use Adenion\Blog2Social\Sdk\Post\Share;
 use Adenion\Blog2Social\Sdk\User\User;
@@ -208,15 +206,7 @@ class Blog2SocialClient
         return new Share($this);
     }
 
-    public function insights(): Insights
-    {
-        return new Insights($this);
-    }
 
-    public function postInsights(): PostInsights
-    {
-        return new PostInsights($this);
-    }
 
     public function video(): Video
     {

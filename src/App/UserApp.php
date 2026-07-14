@@ -53,7 +53,7 @@ class UserApp
             $query_params['app_name'] = $app_name;
         }
 
-        return $this->client->requestQuery('/app/add', $query_params);
+        return $this->client->requestBody('/app/add', $query_params);
     }
 
     public function add(
@@ -72,7 +72,7 @@ class UserApp
 
     public function listApps(): array
     {
-        return $this->client->requestQuery('/app/list');
+        return $this->client->requestBody('/app/list');
     }
 
     public function list(): array
@@ -107,7 +107,7 @@ class UserApp
             $query_params['app_secret'] = $app_secret;
         }
 
-        return $this->client->requestQuery('/app/modify', $query_params);
+        return $this->client->requestBody('/app/modify', $query_params);
     }
 
     public function modify(
@@ -133,7 +133,7 @@ class UserApp
             );
         }
 
-        return $this->client->requestQuery('/app/delete', [
+        return $this->client->requestBody('/app/delete', [
             'user_app_id' => $user_app_id,
         ]);
     }

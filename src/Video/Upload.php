@@ -10,7 +10,7 @@ use CURLFile;
 
 class Upload
 {
-    private const UPLOAD_ENDPOINT = 'https://api-upload.blog2social.com/api/rest/v1.0/video/upload/';
+    private const UPLOAD_ENDPOINT = 'https://api-upload.blog2social.com/api/rest/v1.0/video/upload';
 
     public function __construct(private readonly Blog2SocialClient $client)
     {

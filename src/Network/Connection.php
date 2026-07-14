@@ -38,7 +38,7 @@ class Connection extends Network
             $query_params['service_conditions_id'] = $service_conditions_id;
         }
 
-        return $this->client->requestQuery('/network/add', $query_params);
+        return $this->client->requestBody('/network/add', $query_params);
     }
 
     public function add(
@@ -74,7 +74,7 @@ class Connection extends Network
             $language
         );
 
-        return $this->client->requestQuery('/network/update', [
+        return $this->client->requestBody('/network/update', [
             'client_user_network_id' => $client_user_network_id,
             'network_id' => $network_id,
             'network_type_id' => $network_type_id,
