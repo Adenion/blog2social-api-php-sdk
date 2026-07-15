@@ -19,8 +19,8 @@ composer require adenion/blog2social-api-php-sdk
 - Composer
 - PHP cURL extension
 - PHP JSON extension
-- A Blog2Social `service_token`
-- An `access_token` for user-specific endpoints
+- A Blog2Social API `service_token` ([Create a free Blog2Social API account and get your token to get started.](https://console.blog2social.com/))
+- An Blog2Socail API  `access_token` (required for authenticated endpoints)
 
 ## Architecture
 
@@ -77,7 +77,7 @@ $response = $client
 $access_token = $response['access_token'];
 ```
 
-The access token can then be assigned to the existing client:
+The `access_token` can then be assigned to the existing client:
 
 ```php
 $client->setAccessToken($access_token);
