@@ -19,8 +19,8 @@ composer require adenion/blog2social-api-php-sdk
 - Composer
 - PHP cURL extension
 - PHP JSON extension
-- A Blog2Social API `service_token` ([Create a free Blog2Social API account and get your token to get started.](https://console.blog2social.com/))
-- An Blog2Socail API  `access_token` (required for authenticated endpoints)
+- A Blog2Social API `service_token` ([Create a free API account and get your token](https://console.blog2social.com/))
+- A Blog2Social API  `access_token` (required for authenticated endpoints)
 
 ## Architecture
 
